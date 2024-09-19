@@ -19,7 +19,7 @@
 int main(int argc, char *argv[]){
     // verificação da quantidade de argumentos
     if(argc != 2){
-        puts("Uso: ./hello <num>");
+        puts("Uso: ./labirinto <num>");
         return 1;
     }
 
