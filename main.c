@@ -17,6 +17,12 @@
  * Função principal.
  */
 int main(int argc, char *argv[]){
+    // verificação da quantidade de argumentos
+    if(argc != 2){
+        puts("Uso: ./hello <num>");
+        return 1;
+    }
+
     // matriz que receberá o arquivo .txt
     TMatriz labirinto;
     // ponteiro que apontará para o primeiro nó da pilha
@@ -24,14 +30,9 @@ int main(int argc, char *argv[]){
     // alocação do nó que receberá as coordenadas da saída do labirinto
     no_pilha *saida = malloc(sizeof(no_pilha));
 
-    // verificação da quantidade de argumentos
-    if(argc != 2){
-        puts("Uso: ./hello <num>");
-        return 1;
-    }
-
+    // variável que irá receber o caminho até o arquivo .txt com o labirinto
     char caminho_total[30];
-    // caminho até a pasta com os labirintos
+    // caminho até o arquivo
     strcpy(caminho_total, "./labirintos/labirinto");
     // seleção de qual labirinto será escolhido como entrada a patir do argumento
     strcat(caminho_total, argv[1]);
@@ -43,6 +44,11 @@ int main(int argc, char *argv[]){
     // abertura do arquivo labirindo.txt
     FILE *file = fopen(caminho_total, "r");
 
+    // verificação para saber se o arquivo foi encontrado
+    if (file == NULL){
+        puts("Erro: Arquivo não encontrado");
+        return 2;
+    }
     // preenchimento da matriz com os caracteres do arquivo .txt
     preenche_matriz(labirinto, file, saida);
 
